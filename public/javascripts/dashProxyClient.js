@@ -331,6 +331,7 @@
              * Get Unicode Character from CEA-608 byte code
              */
             var getCharForByte = function getCharForByte(byte) {
+                alert("inside getCharForByte");
                 var charCode = byte;
                 if (specialCea608CharsCodes.hasOwnProperty(byte)) {
                     charCode = specialCea608CharsCodes[byte];
@@ -367,6 +368,7 @@
             };
 
             var numArrayToHexArray = function numArrayToHexArray(numArray) {
+                alert("inside numArrayToHexArray");
                 var hexArray = [];
                 for (var j = 0; j < numArray.length; j++) {
                     hexArray.push(numArray[j].toString(16));
@@ -379,6 +381,7 @@
              * @constructor
              */
             var PenState = function PenState(foreground, underline, italics, background, flash) {
+                alert("inside PenState");
                 this.foreground = foreground || "white";
                 this.underline = underline || false;
                 this.italics = italics || false;
@@ -3571,7 +3574,7 @@
         };
 
         function DashAdapter() {
-
+            alert("inside DashAdapter");
             //let context = this.context;
 
             var instance = undefined,
@@ -3580,6 +3583,7 @@
                 adaptations = undefined;
 
             function setConfig(config) {
+                alert("inside setConfig");
                 if (!config) return;
 
                 if (config.dashManifestModel) {
@@ -3588,19 +3592,23 @@
             }
 
             function initialize() {
+                alert("inside initialize");
                 periods = [];
                 adaptations = {};
             }
 
             function getRepresentationForTrackInfo(trackInfo, representationController) {
+                alert("inside getRepresentationForTrackInfo");
                 return representationController.getRepresentationForQuality(trackInfo.quality);
             }
 
             function getAdaptationForMediaInfo(mediaInfo) {
+                alert("inside getAdaptationForMediaInfo");
                 return adaptations[mediaInfo.streamInfo.id][mediaInfo.index];
             }
 
             function getPeriodForStreamInfo(streamInfo) {
+                alert("inside getPeriodForStreamInfo");
                 var ln = periods.length;
 
                 for (var i = 0; i < ln; i++) {
@@ -3613,6 +3621,7 @@
             }
 
             function convertRepresentationToTrackInfo(manifest, representation) {
+                alert("inside convertRepresentationToTrackInfo");
                 var trackInfo = new _streamingVoTrackInfoJs2['default']();
                 var a = representation.adaptation.period.mpd.manifest.Period_asArray[representation.adaptation.period.index].AdaptationSet_asArray[representation.adaptation.index];
                 var r = dashManifestModel.getRepresentationFor(representation.index, a);
@@ -3630,6 +3639,7 @@
             }
 
             function convertAdaptationToMediaInfo(manifest, adaptation) {
+                alert("inside convertAdaptationToMediaInfo");
                 var mediaInfo = new _streamingVoMediaInfoJs2['default']();
                 var a = adaptation.period.mpd.manifest.Period_asArray[adaptation.period.index].AdaptationSet_asArray[adaptation.index];
                 var viewpoint;
@@ -3678,6 +3688,7 @@
             }
 
             function convertVideoInfoToEmbeddedTextInfo(mediaInfo, channel, lang) {
+                alert("inside convertVideoInfoToEmbeddedTextInfo");
                 mediaInfo.id = channel; // CC1, CC2, CC3, or CC4
                 mediaInfo.index = 100 + parseInt(channel.substring(2, 3));
                 mediaInfo.type = 'embeddedText';
@@ -3689,6 +3700,7 @@
             }
 
             function convertPeriodToStreamInfo(manifest, period) {
+                alert("inside convertPeriodToStreamInfo");
                 var streamInfo = new _streamingVoStreamInfoJs2['default']();
                 var THRESHOLD = 1;
 
@@ -3703,6 +3715,7 @@
             }
 
             function convertMpdToManifestInfo(manifest, mpd) {
+                alert("inside convertMpdToManifestInfo");
                 var manifestInfo = new _streamingVoManifestInfoJs2['default']();
 
                 manifestInfo.DVRWindowSize = mpd.timeShiftBufferDepth;
@@ -3717,6 +3730,7 @@
             }
 
             function getMediaInfoForType(manifest, streamInfo, type) {
+                alert("inside getMediaInfoForType");
                 var periodInfo = getPeriodForStreamInfo(streamInfo);
                 var periodId = periodInfo.id;
                 var data = dashManifestModel.getAdaptationForType(manifest, streamInfo.index, type);
@@ -3725,13 +3739,13 @@
                 if (!data) return null;
 
                 idx = dashManifestModel.getIndexForAdaptation(data, manifest, streamInfo.index);
-
                 adaptations[periodId] = adaptations[periodId] || dashManifestModel.getAdaptationsForPeriod(manifest, periodInfo);
 
                 return convertAdaptationToMediaInfo(manifest, adaptations[periodId][idx]);
             }
 
             function getAllMediaInfoForType(manifest, streamInfo, type) {
+                alert("inside getAllMediaInfoForType");
                 var periodInfo = getPeriodForStreamInfo(streamInfo);
                 var periodId = periodInfo.id;
                 var adaptationsForType = dashManifestModel.getAdaptationsForType(manifest, streamInfo.index, type !== 'embeddedText' ? type : 'video');
@@ -3796,6 +3810,7 @@
             }
 
             function getStreamsInfo(manifest) {
+                alert("inside getStreamsInfo");
                 var streams = [];
                 var mpd, ln, i;
 
@@ -3815,40 +3830,48 @@
             }
 
             function getManifestInfo(manifest) {
+                alert("inside getManifestInfo");
                 var mpd = dashManifestModel.getMpd(manifest);
 
                 return convertMpdToManifestInfo(manifest, mpd);
             }
 
             function getInitRequest(streamProcessor, quality) {
+                alert("inside getInitRequest");
                 var representation = streamProcessor.getRepresentationController().getRepresentationForQuality(quality);
                 return streamProcessor.getIndexHandler().getInitRequest(representation);
             }
 
             function getNextFragmentRequest(streamProcessor, trackInfo) {
+                alert("inside getNextFragmentRequest");
                 var representation = getRepresentationForTrackInfo(trackInfo, streamProcessor.getRepresentationController());
                 return streamProcessor.getIndexHandler().getNextSegmentRequest(representation);
             }
 
             function getFragmentRequestForTime(streamProcessor, trackInfo, time, options) {
+                alert("inside getFragmentRequestForTime");
                 var representation = getRepresentationForTrackInfo(trackInfo, streamProcessor.getRepresentationController());
                 return streamProcessor.getIndexHandler().getSegmentRequestForTime(representation, time, options);
             }
 
             function generateFragmentRequestForTime(streamProcessor, trackInfo, time) {
+                alert("inside generateFragmentRequestForTime");
                 var representation = getRepresentationForTrackInfo(trackInfo, streamProcessor.getRepresentationController());
                 return streamProcessor.getIndexHandler().generateSegmentRequestForTime(representation, time);
             }
 
             function getIndexHandlerTime(streamProcessor) {
+                alert("inside getIndexHandlerTime");
                 return streamProcessor.getIndexHandler().getCurrentTime();
             }
 
             function setIndexHandlerTime(streamProcessor, value) {
+                alert("inside setIndexHandlerTime");
                 return streamProcessor.getIndexHandler().setCurrentTime(value);
             }
 
             function updateData(manifest, streamProcessor) {
+                alert("inside updateData");
                 var periodInfo = getPeriodForStreamInfo(streamProcessor.getStreamInfo());
                 var mediaInfo = streamProcessor.getMediaInfo();
                 var adaptation = getAdaptationForMediaInfo(mediaInfo);
@@ -3862,16 +3885,19 @@
             }
 
             function getRepresentationInfoForQuality(manifest, representationController, quality) {
+                alert("inside getRepresentationInfoForQuality");
                 var representation = representationController.getRepresentationForQuality(quality);
                 return representation ? convertRepresentationToTrackInfo(manifest, representation) : null;
             }
 
             function getCurrentRepresentationInfo(manifest, representationController) {
+                alert("inside getCurrentRepresentationInfo");
                 var representation = representationController.getCurrentRepresentation();
                 return representation ? convertRepresentationToTrackInfo(manifest, representation) : null;
             }
 
             function getEvent(eventBox, eventStreams, startTime) {
+                alert("inside getEvent");
                 var event = new _voEventJs2['default']();
                 var schemeIdUri = eventBox.scheme_id_uri;
                 var value = eventBox.value;
@@ -3897,6 +3923,7 @@
             }
 
             function getEventsFor(manifest, info, streamProcessor) {
+                alert("inside getEventsFor");
                 var events = [];
 
                 if (info instanceof _streamingVoStreamInfoJs2['default']) {
@@ -3911,6 +3938,7 @@
             }
 
             function reset() {
+                alert("inside reset");
                 periods = [];
                 adaptations = {};
             }
@@ -6964,7 +6992,7 @@
             }
 
             function getAdaptationsForType(manifest, periodIndex, type) {
-
+                alert("inside getAdaptationsForType");
                 var adaptationSet = manifest.Period_asArray[periodIndex].AdaptationSet_asArray;
                 var i, len;
                 var adaptations = [];
