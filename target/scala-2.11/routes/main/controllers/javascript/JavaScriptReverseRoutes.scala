@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/abroy240484/Documents/VideoStreaming/server/conf/routes
-// @DATE:Fri Mar 11 14:31:42 EST 2016
+// @SOURCE:/Users/abroy240484/Documents/VideoStreaming/dashplayer/conf/routes
+// @DATE:Tue Mar 29 00:25:52 EDT 2016
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }

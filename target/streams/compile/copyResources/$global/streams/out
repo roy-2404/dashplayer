@@ -1,4 +1,4 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(/Users/abroy240484/Documents/VideoStreaming/server/conf/application.conf,/Users/abroy240484/Documents/VideoStreaming/server/target/scala-2.11/classes/application.conf)[0m
-[0m[[0mdebug[0m] [0m	(/Users/abroy240484/Documents/VideoStreaming/server/conf/logback.xml,/Users/abroy240484/Documents/VideoStreaming/server/target/scala-2.11/classes/logback.xml)[0m
-[0m[[0mdebug[0m] [0m	(/Users/abroy240484/Documents/VideoStreaming/server/conf/routes,/Users/abroy240484/Documents/VideoStreaming/server/target/scala-2.11/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/Users/abroy240484/Documents/VideoStreaming/dashplayer/conf/application.conf,/Users/abroy240484/Documents/VideoStreaming/dashplayer/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/Users/abroy240484/Documents/VideoStreaming/dashplayer/conf/logback.xml,/Users/abroy240484/Documents/VideoStreaming/dashplayer/target/scala-2.11/classes/logback.xml)[0m
+[0m[[0mdebug[0m] [0m	(/Users/abroy240484/Documents/VideoStreaming/dashplayer/conf/routes,/Users/abroy240484/Documents/VideoStreaming/dashplayer/target/scala-2.11/classes/routes)[0m

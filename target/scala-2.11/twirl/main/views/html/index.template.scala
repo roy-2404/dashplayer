@@ -33,7 +33,7 @@ Seq[Any](format.raw/*1.1*/("""<script src=""""),_display_(/*1.15*/routes/*1.21*/
 <html>
   <body>
     <div>
-      <video data-dashjs-player autoplay src="http://160.39.150.221:1935/vod/smil:Test.smil/manifest.mpd" controls></video>
+      <video data-dashjs-player autoplay src="http://192.168.0.5:1935/vod/smil:Test.smil/manifest.mpd" controls></video>
     </div>
   </body>
 </html>"""))
@@ -56,9 +56,9 @@ Seq[Any](format.raw/*1.1*/("""<script src=""""),_display_(/*1.15*/routes/*1.21*/
 object index extends index_Scope0.index
               /*
                   -- GENERATED --
-                  DATE: Fri Mar 25 13:53:44 EDT 2016
-                  SOURCE: /Users/abroy240484/Documents/VideoStreaming/server/app/views/index.scala.html
-                  HASH: 22d69ebbc4055f4be904805872e010cfe4a3e762
+                  DATE: Sun Apr 03 22:31:52 EDT 2016
+                  SOURCE: /Users/abroy240484/Documents/VideoStreaming/dashplayer/app/views/index.scala.html
+                  HASH: 4f9c017a38c1e30525da43bcd67adae550273089
                   MATRIX: 827->0|867->14|881->20|952->71
                   LINES: 32->1|32->1|32->1|32->1
                   -- GENERATED --
