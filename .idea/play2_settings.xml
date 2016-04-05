@@ -3,8 +3,13 @@
   <component name="Play2ProjectSettings">
     <option name="LANGUAGE_IMPORTS">
       <array>
+<<<<<<< Updated upstream
         <option value="play.api.data.Field" />
         <option value="play.data._" />
+=======
+        <option value="play.data._" />
+        <option value="play.api.data.Field" />
+>>>>>>> Stashed changes
         <option value="play.api.templates.PlayMagic._" />
         <option value="scala.collection.JavaConversions._" />
         <option value="java.lang._" />

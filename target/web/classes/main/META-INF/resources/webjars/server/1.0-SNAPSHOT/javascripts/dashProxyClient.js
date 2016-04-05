@@ -3597,10 +3597,13 @@
                 adaptations = {};
             }
 
-            function getRepresentationForTrackInfo(trackInfo, representationController) {
+            function getRepresentationForTrackInfo(trackInfo, representationController, flagQuality) {
                 //alert("inside getRepresentationForTrackInfo");
                 //alert("Quality: " + trackInfo.quality);
-                return representationController.getRepresentationForQuality(1);
+                if (flagQuality == 0)
+                    return representationController.getRepresentationForQuality(0);
+                else
+                    return representationController.getRepresentationForQuality(1);
             }
 
             function getAdaptationForMediaInfo(mediaInfo) {
@@ -3842,10 +3845,15 @@
                 var representation = streamProcessor.getRepresentationController().getRepresentationForQuality(quality);
                 return streamProcessor.getIndexHandler().getInitRequest(representation);
             }
-
+            var flagQualitySwitch =0;
             function getNextFragmentRequest(streamProcessor, trackInfo) {
                 //alert("inside getNextFragmentRequest");
-                var representation = getRepresentationForTrackInfo(trackInfo, streamProcessor.getRepresentationController());
+                if(flagQualitySwitch ==1)
+                    flagQualitySwitch =0;
+                else
+                    flagQualitySwitch =1;
+                var representation = getRepresentationForTrackInfo(trackInfo, streamProcessor.getRepresentationController(),flagQualitySwitch);
+                //alert(representation);
                 return streamProcessor.getIndexHandler().getNextSegmentRequest(representation);
             }
 
@@ -4236,6 +4244,11 @@
                 var period, presentationStartTime;
 
                 period = representation.adaptation.period;
+
+                //if(representation.index==0)
+                  //  representation.index=1;
+                //else
+                  //  representation.index=0;
 
                 request.mediaType = mediaType;
                 request.type = _streamingVoMetricsHTTPRequestJs2['default'].INIT_SEGMENT_TYPE;
@@ -7133,8 +7146,9 @@
                 var a = processAdaptation(manifest.Period_asArray[adaptation.period.index].AdaptationSet_asArray[adaptation.index]);
                 var representations = [];
                 var representation, initialization, segmentInfo, r, s;
-
+                //var i =0;
                 for (var i = 0; i < a.Representation_asArray.length; i++) {
+
                     r = a.Representation_asArray[i];
                     representation = new _voRepresentationJs2['default']();
                     representation.index = i;
