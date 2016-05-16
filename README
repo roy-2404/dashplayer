@@ -1,49 +1,58 @@
-This is your new Play application
-=================================
+This is a Play framework web application for playing a video using DASH from Wowza Streaming Engine service 
+===========================================================================================================
 
-This file will be packaged with your application when using `activator dist`.
+Server:
+==========================
 
-There are several demonstration files available in this template.
+We hosted a video server using Wowza Streaming Engine. We followed the steps mentioned in their user manual found online: http://goo.gl/1Wf5NS
 
-Controllers
-===========
+We then created a SMIL file in the VOD application on Wowza, with 2 different video files (.mp4) of the same video, each having a different bitrate quality, 720p and 360p. We had to name them Test_360.mp4 and Test_720.mp4. Also, for each of the files we had to enter some properties as follows:
 
-- HomeController.java:
+360p file:
 
-  Shows how to handle simple HTTP requests.
+Tag Type
+video
+Source (src)
+Test_360.mp4
+System Language
+eng
+Video Bitrate
+10000  bps
+Video Width
+480
+Video Height
+360
+Audio Bitrate
+3000  bps
 
-- AsyncController.java:
+720p file:
+Tag Type
+video
+Source (src)
+Test_720.mp4
+System Language
+eng
+Video Bitrate
+24000000  bps
+Video Width
+1280
+Video Height
+720
+Audio Bitrate
+1000000  bps
 
-  Shows how to do asynchronous programming when handling a request.
+Then, we obtained the url to the video file from the Test Players section of Wowza: http://[our ip address]:1935/vod/smil:Test.smil/manifest.mpd
 
-- CountController.java:
+Client:
+==========================
+We created a simple Play Framework application, with the above url as the url for the dash player in the index.html
 
-  Shows how to inject a component into a controller and use the component when
-  handling requests.
+<video data-dashjs-player autoplay src="http://[our ip address]:1935/vod/smil:Test.smil/manifest.mpd" controls></video>
 
-Components
-==========
+We included the dash.js from https://github.com/Dash-Industry-Forum/dash.js and included it as "dashProxyClient.js" in our project and made our changes in the file.
 
-- Module.java:
+Run Instructions:
+==========================
+To run the application, in the terminal switch to the folder where the project is and then type "activator run" at the terminal (activator from play framework is needed to be installed for this to work)
 
-  Shows how to use Guice to bind all the components needed by your application.
-
-- Counter.java:
-
-  An example of a component that contains state, in this case a simple counter.
-
-- ApplicationTimer.java:
-
-  An example of a component that starts when the application starts and stops
-  when the application stops.
-
-Filters
-=======
-
-- Filters.java:
-
-  Creates the list of HTTP filters used by your application.
-
-- ExampleFilter.java
-
-  A simple filter that adds a header to every response.
+This will start the server at localhost:9000, and hitting that address on the web browser will play the video.
