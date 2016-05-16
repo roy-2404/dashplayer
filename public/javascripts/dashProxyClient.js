@@ -3597,6 +3597,7 @@
         adaptations = {};
       }
 
+        // Added by Alankrit and Abhijit - this function tracks the quality for each fragment requested, we are controlling it with the flagQuality flag
       function getRepresentationForTrackInfo(trackInfo, representationController, flagQuality) {
         //alert("inside getRepresentationForTrackInfo");
         //alert("Quality: " + trackInfo.quality);
@@ -3846,7 +3847,7 @@
         var representation = streamProcessor.getRepresentationController().getRepresentationForQuality(quality);
         return streamProcessor.getIndexHandler().getInitRequest(representation);
       }
-
+        // Added by Alankrit and Abhijit - flagQualitySwitch is a flag to toggle the quality of video for each Next Fragment Requested
       var flagQualitySwitch = 0;
       //var interval = setInterval(getNextFragmentRequest, 10000);
       var map ={};
@@ -3857,6 +3858,7 @@
         else
           flagQualitySwitch = 1;
 
+        // Added by Alankrit and Abhijit - flagQualitySwitch is passed on to getRepresentation Info which tracks quality
         var representation = getRepresentationForTrackInfo(trackInfo, streamProcessor.getRepresentationController(), flagQualitySwitch);
         //alert(representation);
         var request = streamProcessor.getIndexHandler().getNextSegmentRequest(representation);
@@ -3870,14 +3872,6 @@
         map[key] = true;
 
         return request;
-      }
-
-      function increment() {
-        alert("in increment");
-        if (flagQualitySwitch == 1)
-          flagQualitySwitch = 0;
-        else
-          flagQualitySwitch = 1;
       }
 
       function getFragmentRequestForTime(streamProcessor, trackInfo, time, options) {

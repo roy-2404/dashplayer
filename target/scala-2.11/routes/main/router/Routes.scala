@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/alankritj/Documents/dashplayer/conf/routes
-// @DATE:Sun Apr 03 23:50:57 EDT 2016
+// @SOURCE:/Users/abroy240484/Documents/VideoStreaming/dashplayer/conf/routes
+// @DATE:Fri Apr 08 13:49:45 EDT 2016
 
 package router
 

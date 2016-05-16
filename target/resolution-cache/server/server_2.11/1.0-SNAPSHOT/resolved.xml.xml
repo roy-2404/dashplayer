@@ -4,7 +4,7 @@
 		module="server_2.11"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20160404003610"
+		publication="20160503012816"
 	>
 		<description>
 		server
